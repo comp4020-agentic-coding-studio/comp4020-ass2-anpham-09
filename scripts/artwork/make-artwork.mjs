@@ -30,7 +30,11 @@ import sharp from "sharp";
 // its actual job.
 const PALETTES = {
   light: { ground: "#f4efe4", gold: "#b97d1c", ink: "#3a2413", deep: "#241608", cut: "#f4efe4" },
-  dark: { ground: "#171310", gold: "#c98a22", ink: "#6b4a1e", deep: "#8a5c13", cut: "#0d0a08" },
+  // Pitched brighter than the card's gold on purpose: the scrim runs to 80%
+  // black over the lower half, so a tone that reads well in isolation reads
+  // as brown mud once composited. These are chosen against the scrim, not
+  // against the ground.
+  dark: { ground: "#1a1512", gold: "#e0a534", ink: "#8a5f24", deep: "#b0741a", cut: "#0d0a08" },
 };
 
 /** Deterministic PRNG, so re-running this produces the same artwork rather
