@@ -1,18 +1,25 @@
 ---
 import ContentLayout from "astro-theme-university/layouts/ContentLayout.astro";
-import SessionsGrid from "../../components/SessionsGrid.astro";
+import SemesterSection from "../../components/SemesterSection.astro";
 import { sessionLabels, siteConfig } from "../../site-config";
 ---
 
 <ContentLayout
   title={sessionLabels.plural}
-  description={`The twelve-week teaching schedule: what happens in each ${sessionLabels.singular.toLowerCase()}, what to prepare, and what leaves the room.`}
+  description="Twelve weeks, twelve forensic methods, one dig site — grouped into the four phases the semester moves through."
   {...siteConfig}
 >
   <p>
-    The internal collection and URL stay <code>sessions</code>. Set the visible
-    singular and plural names once in <code>src/site-config.ts</code> and use
-    the language your course deserves everywhere readers see it.
+    Every week is a method, not a topic. You bring the same dig site to all
+    twelve, and each one gives you a different way to read it — so the findings
+    accumulate rather than reset. Weeks 1–4 establish what the thing is; 5–8
+    work out why it died; 9–11 ask whether it should come back; week 12 is
+    where you tell someone.
   </p>
-  <SessionsGrid />
+  <p>
+    Each {sessionLabels.singular.toLowerCase()} page carries three things: what
+    to do before you arrive, what happens in the room, and what leaves with
+    you.
+  </p>
+  <SemesterSection />
 </ContentLayout>

@@ -1,0 +1,193 @@
+---
+// The semester drawn as a stratigraphic section: twelve layers, grouped into
+// the four phases the course moves through. It is the same motif as the site's
+// artwork, and it does a job the card grid could not — showing that the weeks
+// accumulate rather than merely follow one another.
+//
+// Structure first: this is an ordered list of weeks inside a section per
+// phase. The strata are drawn with borders and spacing on top of real list
+// semantics, so the page still reads correctly with styles off and to a
+// screen reader, and phase is carried by a heading rather than by colour.
+import { getPublishedCollection } from "astro-course-university/content";
+import { formatCourseDate } from "../lib/dates";
+import { route } from "../lib/url";
+
+const sessions = await getPublishedCollection("sessions");
+const byWeek = sessions.sort((a, b) => a.data.week - b.data.week);
+
+const PHASES = [
+  { name: "Survey", weeks: [1, 4], question: "What is this thing?" },
+  { name: "Analysis", weeks: [5, 8], question: "Why did it die?" },
+  { name: "Ethics and restoration", weeks: [9, 11], question: "Should it come back?" },
+  { name: "Exhibit", weeks: [12, 12], question: "Tell the story." },
+] as const;
+
+const phases = PHASES.map((phase) => ({
+  ...phase,
+  sessions: byWeek.filter(
+    (s) => s.data.week >= phase.weeks[0] && s.data.week <= phase.weeks[1],
+  ),
+}));
+---
+
+<div class="section">
+  {
+    phases.map((phase) => (
+      <section class="phase">
+        <div class="phase-head">
+          <h2 class="phase-name">{phase.name}</h2>
+          <p class="phase-question">{phase.question}</p>
+          <p class="phase-range">
+            {phase.weeks[0] === phase.weeks[1]
+              ? `Week ${phase.weeks[0]}`
+              : `Weeks ${phase.weeks[0]}–${phase.weeks[1]}`}
+          </p>
+        </div>
+        <ol class="strata">
+          {phase.sessions.map((session) => (
+            <li class="stratum">
+              <span class="week" aria-hidden="true">
+                {String(session.data.week).padStart(2, "0")}
+              </span>
+              <div class="body">
+                <h3 class="title">
+                  <a href={route(`sessions/${session.id}`)}>
+                    <span class="sr-week">Week {session.data.week}:</span>
+                    {session.data.title}
+                  </a>
+                </h3>
+                {session.data.description && <p class="desc">{session.data.description}</p>}
+                <p class="date">{formatCourseDate(session.data.date)}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))
+  }
+</div>
+
+<style>
+  .section {
+    --rule: color-mix(in oklab, var(--at-primary) 38%, transparent);
+    margin-block: var(--at-spacing-l, 1.5rem) 0;
+  }
+
+  .phase + .phase {
+    margin-block-start: 2.75rem;
+  }
+
+  .phase-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 0.85rem;
+    padding-block-end: 0.5rem;
+    border-block-end: 2px solid var(--rule);
+  }
+
+  .phase-name {
+    margin: 0;
+    font-size: 1.2rem;
+    letter-spacing: 0.01em;
+  }
+
+  .phase-question {
+    margin: 0;
+    color: var(--at-text-secondary);
+    font-style: italic;
+  }
+
+  /* Pushed to the end of the line on wide viewports, and allowed to wrap
+     underneath on narrow ones rather than squeezing the question. */
+  .phase-range {
+    margin: 0 0 0 auto;
+    color: var(--at-text-secondary);
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .strata {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .stratum {
+    display: grid;
+    grid-template-columns: 3.25rem 1fr;
+    gap: 0 1rem;
+    padding-block: 1rem;
+    border-block-end: 1px solid var(--at-divider);
+  }
+
+  .stratum:last-child {
+    border-block-end: none;
+  }
+
+  /* The week number is the depth marker on the section drawing. Tabular
+     figures so the column stays a column. */
+  .week {
+    padding-block-start: 0.1rem;
+    color: var(--at-primary);
+    font-size: 1.5rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .body {
+    min-width: 0;
+  }
+
+  .title {
+    margin: 0 0 0.3rem;
+    font-size: 1.05rem;
+  }
+
+  .title a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  /* The visible week number is aria-hidden, so the link carries its own week
+     for anyone who hears it out of context. */
+  .sr-week {
+    position: absolute;
+    overflow: hidden;
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+    white-space: nowrap;
+  }
+
+  .desc {
+    margin: 0 0 0.35rem;
+    color: var(--at-text-secondary);
+    text-wrap: pretty;
+  }
+
+  .date {
+    margin: 0;
+    color: var(--at-text-secondary);
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (width < 34rem) {
+    .stratum {
+      grid-template-columns: 2.5rem 1fr;
+      gap: 0 0.75rem;
+    }
+
+    .week {
+      font-size: 1.2rem;
+    }
+
+    .phase-range {
+      margin-inline-start: 0;
+    }
+  }
+</style>
