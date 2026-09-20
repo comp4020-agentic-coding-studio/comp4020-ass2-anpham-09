@@ -19,6 +19,12 @@ export const slopCourseMetaSchema = z
     endDate: z.iso.date(),
     description: z.string().trim().min(80).max(300),
     tags: z.array(z.string().trim().min(2).max(24)).min(1).max(3),
+    // Supported by the course API (course-graph-integration.ts defaults it
+    // to []), but absent from the schema this template shipped. A
+    // postgraduate course states its outcomes, so the strict object is
+    // widened to carry them rather than dropping them in prose somewhere
+    // the catalogue cannot read.
+    learningOutcomes: z.array(z.string().trim().min(20)).min(1).max(8).optional(),
   })
   .superRefine((course, ctx) => {
     const codeLevel = Number(course.code.at(4));
@@ -47,11 +53,11 @@ export const slopCourseMetaSchema = z
 // provisioned, and no other course in the cohort has them. Change the first
 // digit to your course's level (and `level` to match); keep the other three.
 export const courseMeta = slopCourseMetaSchema.parse({
-  code: "SLOP2374",
+  code: "SLOP8374",
   title: "Software Archaeology",
   session: "Semester 1",
   year: 2027,
-  level: 2,
+  level: 8,
   startDate: "2027-02-22",
   endDate: "2027-05-28",
   description:
@@ -60,4 +66,13 @@ export const courseMeta = slopCourseMetaSchema.parse({
     "commit messages as inscriptions, dependency graphs as tool inventories — then " +
     "confront the ethics of reviving someone else's abandoned work.",
   tags: ["forensics", "history", "code"],
+  learningOutcomes: [
+    "Date and phase an undocumented codebase from its version-control record, and state the confidence and limits of that dating",
+    "Reconstruct a development team's architecture, conventions and working practices from artefacts alone, without access to its members",
+    "Diagnose a project's cause of death against a taxonomy of failure modes, and defend that diagnosis against competing explanations of the same evidence",
+    "Conduct oral-history enquiry with former maintainers under an explicit research-ethics framework, including deciding when not to make contact",
+    "Evaluate the ethics of reviving abandoned work, distinguishing what a licence permits from what its authors intended",
+    "Execute a restoration under the principle of minimum intervention, and justify every change and every deliberate non-change",
+    "Communicate a technical excavation to a non-specialist audience as a sustained, evidenced argument",
+  ],
 }) satisfies CourseMetaInput;
