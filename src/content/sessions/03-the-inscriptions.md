@@ -1,8 +1,8 @@
 ---
 title: The inscriptions
 description:
-  Commit messages as primary sources — reconstructing a team's communication
-  norms, morale, and working patterns from the messages they left behind.
+  Reading the inscriptions — commit messages as primary sources for a team's
+  communication norms, morale, and working patterns.
 week: 3
 date: 2027-03-08
 teachers:

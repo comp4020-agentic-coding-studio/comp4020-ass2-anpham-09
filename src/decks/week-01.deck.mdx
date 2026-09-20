@@ -1,48 +1,93 @@
 ---
-title: Opening lecture
-description: The placeholder deck — replace it with a real deck for your course
+title: What makes software dead?
+description: Week 1 — what software archaeology is, why abandoned code matters, and how to choose a dig site
 ---
 
-# Opening lecture
+# Software Archaeology
 
-{/* STARTER_CONTENT: replace this deck, then remove this comment. */}
-
-Replace this deck. It is here to show that slides are part of the site, built
-from the same markdown as everything else.
+SLOP2374 · Week 1
 
 ---
 
-## Slides are markdown
+## A question
 
-A `---` starts a new slide. Everything else is ordinary markdown: headings,
-lists, links, tables, images, fenced code.
+How many npm packages received a human commit in the last two years?
 
-- one idea per slide
-- the fewest words that carry it
-- the deck is a performance artefact, so it can say things a page wouldn't
+---
+
+## About half
+
+~1.8 million packages on the registry.
+
+~900,000 with no human commit since 2024.
+
+Every one of them is somebody's abandoned project.
+
+---
+
+## Dead, dormant, or done?
+
+Three kinds of silence:
+
+- **Dead:** the maintainer left, the issues pile up, the dependencies rot
+- **Dormant:** the maintainer will come back (they say)
+- **Done:** the project does what it set out to do. Silence is success.
+
+This course studies all three — but mostly the first.
+
+---
+
+{/* _class: quote */}
+
+> Every codebase is a ruin eventually.
+>
+> Including the one you are writing this afternoon.
+
+---
+
+## Case study: Google Reader
+
+- Launched 2005. Killed 2013.
+- Cause of death: corporate strategy — Google+ needed the users.
+- Mourned by millions. Archived by nobody.
+- The RSS reader ecosystem never recovered.
+
+What would an archaeologist find in the ruins?
+
+---
+
+## Your dig site
+
+Criteria:
+
+- **Public** — you need to read the history
+- **Abandoned** — no human commit in 18+ months
+- **Licensed** — you will fork it in week 11
+- **Rich enough** — at least 100 commits, at least 2 contributors
+- **Dead enough** — not "on hiatus," not "looking for maintainers"
+
+---
+
+## The semester
+
+| Weeks | Phase | Question |
+| --- | --- | --- |
+| 1–4 | Survey | What is this thing? |
+| 5–8 | Analysis | Why did it die? |
+| 9–11 | Ethics & restoration | Should it come back? |
+| 12 | Exhibit | Tell the story |
+
+One codebase. Twelve methods. One exhibit.
 
 ---
 
 {/* _class: impact */}
 
-# A slide class
+# Before next week
 
-`{/* _class: impact */}` fills the slide with the brand colour. `quote`,
-`banner` and `centered` are the others the theme styles.
+1. Find three candidate dig sites
+2. Clone each one
+3. Run `git log --oneline | wc -l`
+4. Bring all three to the session
 
----
-
-## What else is here
-
-```sh
-pnpm dev
-pnpm check
-```
-
-The second command proves the deck compiles with the rest of the site. Use the
-first to inspect every slide at the desktop and phone marking viewports; slide
-fit and legibility are visual judgements.
-
-The [astromotion](https://github.com/ANUcybernetics/astromotion) README has the
-rest of the syntax: speaker notes, backgrounds, QR codes, fragments, and
-components hydrated per slide.
+Choose one you can live with.
