@@ -1,53 +1,65 @@
 # Process overview
 
-<!-- TEMPLATE: this file is a shape to fill in, not a form. Replace everything
-     in it with your own overview, and delete this comment — `pnpm
-     check:evidence` will remind you if it's still here. -->
-
-Written by you, for a reader: how you got from the brief to the harness and
-agentic workflow behind this submission. Markers read this file and follow its
-citations; they don't trawl the repo for evidence you didn't point at.
-
-This file is the shape; the course site's
-[assessment page](https://comp.anu.edu.au/courses/comp4020-agentic-coding-studio/topics/assessment/#what-you-submit)
-is the requirement, and its
-[word counts](https://comp.anu.edu.au/courses/comp4020-agentic-coding-studio/topics/assessment/#word-counts)
-cover every deliverable.
-
 ## What I built
 
-One paragraph: the thing, and the idea behind it.
+**SLOP2374 Software Archaeology** — a second-year course in excavating intent
+from abandoned code. Students choose one dead repository in week 1 and spend
+twelve weeks applying a different forensic method to it: dating the commit
+history as stratigraphy, reading commit messages as inscriptions, dating the
+project by its dependency manifest, and eventually diagnosing a cause of death
+and deciding whether the thing should be revived at all.
 
-## How I got here
+## The course-design position I started from
 
-The account of the process: how the work actually went, and how you knew the
-result was right. Tell it in whatever order makes it clear. A weekly prototype
-needs a paragraph or two; an assignment needs more.
+My position is that a good course is **one idea explored through twelve
+different methods, not twelve different topics**. Twelve topics is a reading
+list; twelve methods applied to the same object is a discipline, because the
+findings accumulate. The archaeology metaphor gave me that structure for free —
+each week is a different technique brought to the same dig site, so week 8 can
+ask students to combine six earlier readings into a diagnosis instead of
+starting fresh.
 
-Cite the record as you go, as links whose text is the commit hash or range and
-whose target is this repo's commit or compare URL, so a reader clicks straight
-to the evidence:
+That decision is what the site had to encode, and it is why the digs index is a
+custom component rather than a card grid: the card grid rendered twelve equal,
+unordered things, which is exactly the shape I was arguing against. The
+[stratigraphic section](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-anpham-09/commit/5ea6e44) groups the weeks into four phases
+and draws them as layers.
 
-- one commit: [`a1b2c3d`](https://github.com/YOUR-ORG/YOUR-REPO/commit/a1b2c3d)
-- a range:
-  [`a1b2c3d...e4f5a6b`](https://github.com/YOUR-ORG/YOUR-REPO/compare/a1b2c3d...e4f5a6b)
+## What I encoded in the harness
 
-To pair a prompt with the commit it produced, quote the prompt (curated, not a
-full transcript) next to the citation:
+I wrote [`c69e846`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-anpham-09/commit/c69e846) — eight harness rules — **before any
+content existed**, so the rules were a contract the content had to satisfy
+rather than a description of what I had already written. Rule 1 is the load
+bearing one: *every session is a method, not a topic.*
 
-> the prompt, verbatim
+Seven of those rules are judgement and stay judgement. Rule 1 is the one a test
+can hold, so it got a sensor: `spec/course-integrity.test.ts` asserts that
+every dig's description names a forensic method from a fixed vocabulary
+([`2cfc5e1`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-anpham-09/commit/2cfc5e1)). It earned its place immediately — it failed
+on `sessions/03`, whose *title* said "inscriptions" but whose *description*
+named no method at all. I fixed the content rather than widening the test.
+Being explicit about which rules have sensors and which do not is itself part
+of the harness.
 
-Screenshots are welcome where one carries the point better than a sentence does.
-Commit the file to this repo and link it with a **relative** path, which is what
-makes it render on GitHub: `![alt text](docs/before.png)`. Images don't count
-towards the word count and don't replace the citation.
+## Two failures worth citing
 
-## Before you ship
+The [base path](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-anpham-09/commit/5ea6e44). My `CLAUDE.md` warns that hand-written
+root-absolute hrefs skip Astro's base handling, and notes this template ships
+no `route()` helper — then I wrote twelve of them anyway and the build
+rejected all twelve. The fix was not to patch the strings but to add
+`src/lib/url.ts` with tests, because a rule I have to remember is weaker than a
+function with a test around it. Worth recording separately: the build reported
+this under a misleading *"document or window is not defined"* hint, with the
+real error twelve lines above it.
 
-`pnpm check:evidence` verifies that this comment is gone, that your citations
-resolve to real commits, that a crit week's reflection entry is in
-`reflections/`, and that your `CLAUDE.md` is there. It checks that your account
-is traceable, not that it is good: that is the marker's call.
+The [artwork](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-anpham-09/commit/cc6ba01) is generated from code, and had two bugs
+that no check in the roster could see. The depth term was inverted, so the
+first render was a skyline instead of a section; and `mix-blend-mode` is
+silently ignored by the rasteriser, so a warm two-ink palette was compositing
+to a cool grey. Both were only visible by looking at the rendered PNG.
 
-Images aren't checked: unlike a citation whose SHA doesn't resolve, a broken
-image is visible the moment this file is rendered on GitHub.
+## Where to look
+
+The history runs [`c69e846...5ea6e44`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-anpham-09/compare/c69e846...5ea6e44) in the
+order the work happened: harness, then identity, then people, then content in
+batches, then the checks, then the artwork and the index component.
