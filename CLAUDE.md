@@ -49,9 +49,15 @@ template.
   content refs fail the build, decks compile, and the versioned course API is
   emitted. Nothing else matters until this is green.
 - **test** (`pnpm test`, part of `pnpm check`) --- builds first, then
-  `vitest run spec`. `spec/data-integrity.test.ts` checks the one cross-page
-  fact the build can't (dated material stays inside the teaching period); the
-  tests I write for this week's spec run alongside it.
+  `vitest run spec src`. `spec/data-integrity.test.ts` checks the one
+  cross-page fact the build can't (dated material stays inside the teaching
+  period); the tests I write for this week's spec run alongside it.
+  **The template ships this as `vitest run spec` alone**, so a test co-located
+  with its source in `src/` is collected by no script and runs in no CI job.
+  `src/lib/url.test.ts` sat in exactly that blind spot until I checked. A test
+  that cannot run is worse than no test, because it reads as coverage. The
+  `src` path is added deliberately; `scripts/` stays out, since those are
+  template-maintainer tests and `test:template` owns them.
 - **check:evidence** --- `PROCESS.md` exists, its template boilerplate is gone,
   and every commit it cites resolves; `CLAUDE.md` exists. **No
   `reflections/` file is required for an assignment repo** ---
