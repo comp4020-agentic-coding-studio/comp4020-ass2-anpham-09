@@ -165,3 +165,44 @@ Constraints on the artefact that no check above can see:
 
 This file and any sensors added to `spec/` are what carries forward to the next
 repo; the course content and this week's spec answers stay behind.
+
+## Software Archaeology harness rules
+
+These are the rules for *this course*, not for the stack. They were written
+before any content existed, because they are what the content had to satisfy.
+
+1. **Every session is a method, not a topic.** The week title names a domain
+   ("The inscriptions") but the content teaches a forensic technique the
+   student applies to their own dig site. A session that describes a subject
+   without teaching a method is filler — reject it.
+2. **The metaphor is used, never explained.** Don't write "commit messages are
+   like inscriptions because…" — just call them inscriptions. The reader gets
+   it from context or re-reads week 1. Explaining the conceit is how it dies.
+3. **No session mentions a technology as something to learn.** This is not a
+   Git course or a Node course. Tools appear as artefacts to be examined,
+   never as skills to acquire: "read the dependency manifest", not "learn how
+   npm works".
+4. **Assessment descriptions name what the student argues, not what they
+   submit.** "Revise your cause-of-death diagnosis", not "submit a 1500-word
+   report". The format belongs under "What you submit".
+5. **People have specificity.** Bios name research interests and personality
+   traits, not just credentials. A one-line title and a generic paragraph is a
+   placeholder, not a person.
+6. **Weeks build.** Each session's "Before the dig" can reference findings from
+   earlier weeks. By week 8 the student is combining methods, not using each
+   one in isolation. A semester of twelve independent topics is twelve
+   lectures; a semester of twelve methods on one dig site is a course.
+7. **Case studies are real.** Every lecture names a real project, a real event,
+   or a real person. No hypothetical examples. If a claim needs a source, find
+   one or cut the claim.
+8. **The voice is academic but warm.** Takes dead code seriously without being
+   solemn. The humour comes from how well the archaeology metaphor holds up,
+   not from jokes about it.
+
+### Holding these mechanically
+
+Rule 1 is the one a person would otherwise have to police by reading all
+twelve sessions, so it has a sensor: `spec/course-integrity.test.ts` asserts
+every session description names a forensic method from a fixed vocabulary. The
+other seven are judgement, and they stay judgement — a rule I can't test is
+still worth writing down, but I should know which kind I'm holding.
