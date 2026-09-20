@@ -1,0 +1,85 @@
+---
+title: Reading the inscriptions
+description: Week 3 — commit messages as primary sources
+---
+
+# Reading the inscriptions
+
+SLOP2374 · Week 3
+
+---
+
+## A commit message is a genre
+
+It has conventions, an audience, and a house style.
+
+Choosing a convention is a statement about who you expect to read the history.
+So is choosing not to have one.
+
+---
+
+## Four kinds
+
+- **Descriptive:** what changed and why
+- **Terse:** what changed
+- **Opaque:** `wip`, `stuff`, `.`
+- **Conventional:** `feat:`, `fix:`, `chore:`
+
+Count the proportions on your dig site. The ratio is the finding.
+
+---
+
+## What terse means
+
+Four readings of the same short message:
+
+- Low effort
+- High velocity
+- Working alone, with no audience in mind
+- Exhaustion
+
+The commit message alone will not tell you which. The dates around it might.
+
+---
+
+## Case study: the Linux kernel
+
+Torvalds's merge commits are editorial: they summarise other people's work, in
+his voice, for a reader who was not in the discussion.
+
+Very few projects write history for a future reader. The ones that do are
+unmistakable.
+
+---
+
+## Provenance in the trailers
+
+`Signed-off-by:` is the Developer Certificate of Origin — a legal assertion
+about where code came from.
+
+`Co-authored-by:`, `Reviewed-by:`, `Reported-by:` are a social graph nobody
+drew on purpose.
+
+Archaeological metadata, attached to every artefact.
+
+---
+
+## What they cannot tell you
+
+The conversation happened before the commit.
+
+The argument, the rejected design, the thing someone chose not to say in
+writing — none of it is in the log.
+
+This is why week 7 goes looking for people.
+
+---
+
+{/* _class: impact */}
+
+# Before next week
+
+Categorise 100 commit messages from your dig site.
+
+Find the single most diagnostic one — the message that tells you something the
+code cannot.

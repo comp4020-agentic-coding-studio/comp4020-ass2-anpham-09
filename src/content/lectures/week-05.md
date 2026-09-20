@@ -7,6 +7,7 @@ week: 5
 date: 2027-03-22
 teachers:
   - maren-voss
+slides: /decks/week-05/
 related:
   - sessions/05-architecture-from-ruins
 ---

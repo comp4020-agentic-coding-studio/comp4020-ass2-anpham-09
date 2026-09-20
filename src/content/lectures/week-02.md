@@ -7,6 +7,7 @@ week: 2
 date: 2027-03-01
 teachers:
   - kai-nakamura
+slides: /decks/week-02/
 related:
   - sessions/02-stratigraphy
 ---

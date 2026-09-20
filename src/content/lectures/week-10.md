@@ -7,6 +7,7 @@ week: 10
 date: 2027-04-26
 teachers:
   - kai-nakamura
+slides: /decks/week-10/
 related:
   - sessions/10-restoration-ethics
 ---

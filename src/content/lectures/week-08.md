@@ -7,6 +7,7 @@ week: 8
 date: 2027-04-12
 teachers:
   - kai-nakamura
+slides: /decks/week-08/
 related:
   - sessions/08-cause-of-death
   - assessments/forensic-analysis

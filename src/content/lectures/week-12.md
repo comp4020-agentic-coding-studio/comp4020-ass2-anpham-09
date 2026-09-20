@@ -8,6 +8,7 @@ date: 2027-05-10
 teachers:
   - maren-voss
   - kai-nakamura
+slides: /decks/week-12/
 related:
   - sessions/12-the-exhibit
   - assessments/the-exhibit

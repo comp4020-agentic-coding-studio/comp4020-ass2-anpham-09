@@ -1,0 +1,91 @@
+---
+title: Archives and time capsules
+description: Week 9 — preservation, and what it still loses
+---
+
+# Archives and time capsules
+
+SLOP2374 · Week 9
+
+---
+
+## Software Heritage
+
+The largest archive of source code ever assembled: hundreds of millions of
+projects, harvested and content-addressed.
+
+It preserves the code. Hold that thought.
+
+---
+
+## The Internet Archive
+
+The Wayback Machine preserves the web as it was rendered — including the
+project pages, the download links, and the forums the code lived inside.
+
+Often more useful for a dig than the repository itself.
+
+---
+
+## The Arctic Code Vault
+
+In 2020 GitHub wrote 21TB of public repositories to film and put it in a
+decommissioned coal mine in Svalbard, rated for a thousand years.
+
+It includes a guide explaining what a computer is.
+
+Ask what a reader in 3020 would still be missing.
+
+---
+
+{/* _class: quote */}
+
+> Archiving source code is easy.
+>
+> Archiving the ability to run it is nearly impossible.
+
+---
+
+## The executability problem
+
+Every one of these is a link in the chain:
+
+- The runtime version
+- The OS and its system calls
+- Environment variables nobody documented
+- A service that no longer answers
+- The hardware itself
+
+Break one link and you have a text file, not a program.
+
+---
+
+## Case study: the BBC Domesday Project
+
+In 1986 the BBC recorded a national survey onto laserdisc, read by a custom
+Acorn system.
+
+By 2001 it was unreadable — the hardware was gone. Restoring it took a dedicated
+emulation project.
+
+The 900-year-old parchment Domesday Book was fine.
+
+---
+
+## Container archaeology
+
+Try it: can you `docker build` a 2014 Dockerfile?
+
+Usually not. The base image moved, the package mirrors went away, the keys
+expired. Containers date faster than most people expect.
+
+---
+
+{/* _class: impact */}
+
+# Before next week
+
+Try to build and run your dig site. Document exactly where it fails.
+
+Then write what would be lost if the repository were deleted tomorrow — beyond
+the code.

@@ -1,0 +1,82 @@
+---
+title: The tool kit
+description: Week 4 — dependency manifests as datable artefacts
+---
+
+# The tool kit
+
+SLOP2374 · Week 4
+
+---
+
+## A manifest is a time capsule
+
+Pottery dates a stratum. `package.json` dates a project.
+
+You can usually place a codebase within about eighteen months from its direct
+dependencies alone, without reading a line of its code.
+
+---
+
+## Era markers
+
+- `request` → before 2020
+- jQuery 1.x → before 2016
+- `moment` → before the Temporal conversation
+- Bower, Grunt, `node-sass` → each names a year
+
+Not every marker is a judgement. All of them are a date.
+
+---
+
+## Pinning as a worldview
+
+Exact pins say: change is a risk to be prevented.
+
+Loose ranges say: change is a benefit to be received.
+
+Neither is wrong. Both tell you what the team was afraid of.
+
+---
+
+## Case study: left-pad
+
+In 2016 an eleven-line package was unpublished from npm.
+
+Thousands of builds broke, including Babel's and React's.
+
+The lesson was not about one developer. It was that nobody knew what was in
+their tool kit — the transitive graph is the part you did not choose and cannot
+run without.
+
+---
+
+## When the tool kit is dead too
+
+Check every dependency's own last release.
+
+A project abandoned in 2021 that depended on something abandoned in 2019 was
+already being maintained on borrowed time.
+
+Abandonment is often inherited.
+
+---
+
+## Security archaeology
+
+Known vulnerabilities in abandoned dependencies do not expire.
+
+They sit in the ground, fully armed, waiting for someone to run `npm install`
+on a ten-year-old lockfile.
+
+---
+
+{/* _class: impact */}
+
+# Before next week
+
+Inventory your dig site's direct dependencies.
+
+Date each one. Flag the ones that are themselves abandoned.
+
+The Dig Report is due next week.

@@ -1,0 +1,80 @@
+---
+title: Dating techniques
+description: Week 2 — reading a commit history as geological layers
+---
+
+# Dating techniques
+
+SLOP2374 · Week 2
+
+---
+
+## The log is a primary source
+
+`git log` records what happened, when, and by whom.
+
+It does not record why, what was argued about, or what was deleted before anyone
+committed it.
+
+Read it for what it is: an incomplete register kept by people who were not
+writing it for you.
+
+---
+
+## Three phases
+
+- **Construction:** high frequency, few authors, large diffs
+- **Maintenance:** lower frequency, more authors, more merges
+- **Decay:** sporadic, small, increasingly automated
+
+Most projects pass through all three. The interesting part is the boundary.
+
+---
+
+## Boundary events
+
+A week that does not look like the weeks around it.
+
+- A spike: a release, a rewrite, a deadline
+- A drop: a departure, a fork, a funding decision
+- A gap that never closes
+
+The boundary is where the story is. The phases are just the setting.
+
+---
+
+## Case study: OpenSSL before Heartbleed
+
+In 2014 a bug in OpenSSL exposed memory on roughly half the internet's secure
+servers.
+
+The commit history had been telling the story for years: a codebase critical to
+everything, maintained by a very small number of people, funded by almost
+nobody.
+
+Bus factor is visible in the log, if you read it.
+
+---
+
+## The limits of dating
+
+Commit timestamps lie:
+
+- Clock skew on the author's machine
+- `git rebase` rewrites author dates
+- Squash merges collapse weeks into one commit
+- Bulk imports date an entire codebase to one afternoon
+
+Date the project, then look for reasons to distrust your own dating.
+
+---
+
+{/* _class: impact */}
+
+# Before next week
+
+Produce a commit-frequency graph for your dig site.
+
+Name the phases. Name the boundary.
+
+Bring a reading you are prepared to defend.

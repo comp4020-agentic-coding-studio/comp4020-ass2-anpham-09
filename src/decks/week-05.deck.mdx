@@ -1,0 +1,78 @@
+---
+title: Reconstructing architecture
+description: Week 5 — reading directory structure as a site plan
+---
+
+# Reconstructing architecture
+
+SLOP2374 · Week 5
+
+---
+
+## Structure is a worldview
+
+Before you read any code, read where the code lives.
+
+Directory layout records how a team divided the problem — and whether they ever
+agreed on the division.
+
+---
+
+## The `utils/` problem
+
+A folder named `utils`, `helpers`, `common`, or `misc` means:
+
+> we did not know where to put this
+
+One such folder is normal. A `utils/` containing a third of the codebase is a
+diagnostic finding.
+
+---
+
+## Entry points are front doors
+
+`index.js`, `main.py`, `App.tsx`, `cmd/server/main.go`.
+
+Find the door, and the first three things it reaches for. That is the project's
+actual shape, as opposed to its advertised one.
+
+---
+
+## Case study: Backbone.js
+
+Backbone shipped with a directory convention — models, collections, views — that
+a generation of JavaScript projects copied.
+
+Those projects are now datable by that layout, the way a building is datable by
+its floor plan. The convention outlived the framework.
+
+---
+
+## Dead patterns
+
+Standard practice in one era is unrecognisable in the next:
+
+- Sprockets asset pipelines
+- AMD module loaders
+- `$(document).ready` as an architecture
+- Server-rendered pages, then not, then again
+
+Do not mistake an old pattern for a bad decision.
+
+---
+
+{/* _class: quote */}
+
+> Draw the map they never drew.
+>
+> Then ask whether the territory was ever really that shape.
+
+---
+
+{/* _class: impact */}
+
+# Before next week
+
+Diagram your dig site's structure without reading any function bodies.
+
+Name one structural decision, and what it tells you about the team.

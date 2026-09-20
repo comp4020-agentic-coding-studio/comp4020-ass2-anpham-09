@@ -8,6 +8,7 @@ date: 2027-05-03
 teachers:
   - maren-voss
   - kai-nakamura
+slides: /decks/week-11/
 related:
   - sessions/11-the-restoration
   - assessments/the-exhibit

@@ -1,0 +1,87 @@
+---
+title: Minimum intervention
+description: Week 11 — restoration practice, and its discipline
+---
+
+# Minimum intervention
+
+SLOP2374 · Week 11
+
+---
+
+{/* _class: quote */}
+
+> A conservator stabilises a painting.
+>
+> They do not repaint it.
+
+---
+
+## The conservation principle
+
+Change only what is necessary to make it work.
+
+Document every change, in order, each with a justification.
+
+Stop as soon as it runs.
+
+---
+
+## What "minimum" means in practice
+
+- Updating a dependency, not rewriting the code that calls it
+- A shim, not a migration
+- Restoring compatibility, not adding features
+- Leaving the formatting alone, however much it hurts
+
+---
+
+## The restoration log
+
+A complete, ordered list of every change and why you made it.
+
+The log is as important as the code. Without it, your restoration is
+indistinguishable from a rewrite — and unreviewable.
+
+---
+
+## Case study: HTMX
+
+HTMX revives ideas that were standard in 2005: HTML over the wire, progressive
+enhancement, the server owning state.
+
+Restoration or reinvention? It kept the model and replaced the implementation —
+which is exactly the Ship of Theseus question from last week, shipped as a
+library.
+
+---
+
+## What you deliberately do not change
+
+The temptation is constant: refactor, modernise, improve.
+
+Every improvement is a departure from the original. That may be correct — but
+it must be a decision you made, written down, not a habit you did not notice.
+
+---
+
+## When restoration is wrong
+
+Some projects should stay dead:
+
+- Superseded, with a maintained successor
+- Insecure by design
+- Archived with an explicit request
+- Finished
+
+Choosing not to restore is a legitimate finding.
+
+---
+
+{/* _class: impact */}
+
+# Before next week
+
+Restore one piece of your dig site. One — not the project.
+
+Which part you choose is itself a finding: which part was worth saving?
