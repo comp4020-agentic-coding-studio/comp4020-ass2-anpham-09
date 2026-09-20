@@ -114,6 +114,13 @@ template.
   test.** If the assertion is hard to write, that's the code's shape talking,
   not the test's. Break the thing a new test covers once to confirm it can go
   red.
+- **A `: ` inside an unquoted YAML description breaks the frontmatter.** The
+  content schemas take multi-line plain scalars, and a colon-space anywhere in
+  one reads as a mapping key — the error is `bad indentation of a mapping
+  entry`, pointing at the line but not explaining why. Use `description: >-`
+  for any description containing a colon. Cost one build on
+  `sessions/11-the-restoration`, whose description was `…restores a painting:
+  stabilise, do not repaint`.
 - **Never write `*/` inside a CSS comment** --- it closes the comment early,
   and lightningcss reports the error somewhere unrelated to it.
 - **Astro inlines small module scripts straight into the HTML.** A test that
