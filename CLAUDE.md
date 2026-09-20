@@ -52,11 +52,17 @@ template.
   `vitest run spec`. `spec/data-integrity.test.ts` checks the one cross-page
   fact the build can't (dated material stays inside the teaching period); the
   tests I write for this week's spec run alongside it.
-- **check:evidence** --- process citations resolve to real commits, the exact
-  current reflection (`reflections/assignment-2.md`) is present, CLAUDE.md
-  exists, and --- specific to this template --- every tracked
-  `STARTER_CONTENT` fragment and unchanged placeholder image is gone. Remove a
-  fragment's marker the moment I replace it, not in a batch at the end.
+- **check:evidence** --- `PROCESS.md` exists, its template boilerplate is gone,
+  and every commit it cites resolves; `CLAUDE.md` exists. **No
+  `reflections/` file is required for an assignment repo** ---
+  `scripts/check-evidence.ts`'s `expectedReflections()` returns `[]` for any
+  `comp4020-ass*` repo, because the written account here is `PROCESS.md`
+  itself (the retro crit reads that, not a second document). Specific to A2:
+  every `STARTER_CONTENT` fragment in `src/` must be gone (`git grep`-checked),
+  and four starter assets are hash-checked byte-for-byte --- `card.png`,
+  `hero-home.avif`, and both people photos --- so replacing or deleting each
+  one is required, not optional. Remove a fragment's marker the moment I
+  replace it, not in a batch at the end.
 - **deploy / online** (CI only) --- the live GitHub Pages URL must return 200.
   Not gated on `check`: a red spec doesn't take the live site down.
 - **secrets** (CI only) --- trufflehog scans for verified secrets and for the
@@ -150,9 +156,9 @@ Constraints on the artefact that no check above can see:
   moments that mattered, each pointing at a commit, a `CLAUDE.md` change, or a
   prompt and the commit it produced. `pnpm check:evidence` verifies citations
   resolve to real commits.
-- **`reflections/assignment-2.md`** --- named for this exact deliverable;
-  `check:evidence` checks the current name against the course API, not just
-  the presence of a file.
+- **No reflection file for this repo.** Assignment repos carry none ---
+  `PROCESS.md` is the written account, full stop. Don't add
+  `reflections/assignment-2.md`; it would just be a file nothing reads.
 - **This file is process evidence too.** Keep it honest and current as the
   harness learns things --- a convention to hold the agent to, a sensor that
   keeps catching mistakes, a fact about this stack the agent gets wrong.
