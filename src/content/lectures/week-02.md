@@ -1,23 +1,21 @@
 ---
-title: Second lecture
-description:
-  Week 2 — the first substantive material, and the run-up to the first review
+title: Dating techniques
+description: >-
+  How to read a commit history as geological layers — construction,
+  maintenance, decay — and what the boundaries between them reveal.
 week: 2
 date: 2027-03-01
 teachers:
-  - idris-fenn
+  - kai-nakamura
 related:
-  - sessions/02-first-review
-  - assessments/assignment-1
+  - sessions/02-stratigraphy
 ---
-
-<!-- STARTER_CONTENT: replace this lecture, then remove this comment. -->
-
-Replace this page. It exists so the lectures listing sorts by week and the
-related block has more than one edge to draw.
 
 ## Outline
 
-- the first substantive material, and where it shows up in practice
-- what the first review is looking for
-- reading before next week
+- **`git log` as a primary source:** what it records and what it does not
+- Commit frequency as a proxy for project health
+- Author diversity over time: the bus factor, visible in the log
+- **Case study: OpenSSL before Heartbleed** — years of thin maintenance on one of the most critical libraries in the internet's stack
+- **Boundary events:** releases, rewrites, the refactor that broke everything
+- **The limits of dating:** clock skew, rebased histories, squash merges

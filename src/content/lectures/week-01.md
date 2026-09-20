@@ -1,30 +1,22 @@
 ---
-title: Opening lecture
-description:
-  The first lecture — what the course is, why it is shaped this way, and what
-  happens in week 1
+title: What makes software dead?
+description: >-
+  The opening lecture — what software archaeology is, why abandoned code
+  matters, and how to choose a dig site.
 week: 1
 date: 2027-02-22
 teachers:
-  - marisol-quaye
+  - maren-voss
 slides: /decks/week-01/
 related:
-  - sessions/01-getting-started
+  - sessions/01-the-dead-repo
 ---
-
-<!-- STARTER_CONTENT: replace this lecture, then remove this comment. -->
-
-Replace this page. A lecture entry says what was covered and links to the pages
-that own the detail, so the lecture stays short and nothing is explained twice.
-
-The `related:` ref above is a graph edge: it renders on this page and on the
-session's, so declare a connection once, on whichever side is convenient.
-
-The page renders its `slides:` link automatically. Decks are markdown too,
-under `src/decks/`; the path is part of the lecture's API metadata.
 
 ## Outline
 
-- what the course is for
-- how the weeks are shaped
-- what to do before the first session
+- What is software archaeology? The term, the literature, the practice
+- **The scale of abandonment:** how many npm packages, PyPI packages, and GitHub repos have no human commit in the last two years
+- **Dead vs dormant vs done:** three kinds of silence
+- **Case study: Google Reader** — a product killed by strategy, mourned by users, archived by nobody
+- **Choosing a dig site:** size, licence, history depth, diagnosability
+- **The semester plan:** one codebase, twelve methods, one exhibit
