@@ -1,0 +1,270 @@
+---
+// The course's central claim, made operable: you can see a project die in its
+// own commit history. Rather than illustrate that with invented data, this
+// reads the student's real dig site.
+//
+// It is the week 2 method — phase the history, name the boundary — available
+// before week 2, which is the point: it makes the argument on the home page
+// instead of asserting it.
+import { route } from "../lib/url";
+---
+
+<section class="reader" aria-labelledby="reader-heading">
+  <div class="reader-intro">
+    <p class="eyebrow">Try the method</p>
+    <h2 id="reader-heading">Read a section</h2>
+    <p class="lede">
+      Run <code>git log --format=%ai</code> on any repository and paste the
+      output. This phases the history the way week 2 teaches — construction,
+      maintenance, decay — and names the boundary between the last active
+      period and the silence.
+    </p>
+    <p class="note">
+      Everything happens in your browser. Nothing is uploaded, and nothing is
+      stored.
+    </p>
+  </div>
+
+  <noscript>
+    <p class="note">
+      This tool needs JavaScript. The method it performs is taught in
+      <a href={route("sessions/02-stratigraphy")}>week 2</a> and works just as well on
+      paper.
+    </p>
+  </noscript>
+
+  <div data-tool hidden>
+    <form data-reader-form>
+      <label class="label" for="log-input">Commit dates</label>
+      <textarea
+        id="log-input"
+        data-input
+        rows="5"
+        spellcheck="false"
+        placeholder="2019-01-14 10:23:01 +1100&#10;2019-01-16 09:02:44 +1100&#10;2019-02-03 22:11:07 +1100"></textarea>
+      <button type="submit">Read the section</button>
+    </form>
+
+    <p class="note" data-empty hidden></p>
+
+    <div data-output hidden aria-live="polite">
+      <div class="chart-frame">
+        <div class="chart" data-chart role="img" aria-label="Commit frequency by month, phased"></div>
+        <p class="axis">
+          <span data-field="first-label">oldest</span>
+          <span>newest</span>
+        </p>
+      </div>
+
+      <ul class="legend">
+        <li><span class="swatch" data-phase="construction" aria-hidden="true"></span>Construction</li>
+        <li><span class="swatch" data-phase="maintenance" aria-hidden="true"></span>Maintenance</li>
+        <li><span class="swatch" data-phase="decay" aria-hidden="true"></span>Decay</li>
+      </ul>
+
+      <dl class="findings">
+        <div><dt>Commits</dt><dd data-field="total"></dd></div>
+        <div><dt>Range</dt><dd data-field="range"></dd></div>
+        <div><dt>Peak month</dt><dd data-field="peak"></dd></div>
+        <div><dt>Boundary</dt><dd data-field="boundary"></dd></div>
+        <div><dt>Silent since</dt><dd data-field="silent"></dd></div>
+        <div><dt>Verdict</dt><dd data-field="verdict"></dd></div>
+      </dl>
+
+      <p class="note">
+        The verdict applies week 1's criterion — no human commit in eighteen
+        months. It is a starting hypothesis, not a diagnosis; weeks 3 to 8 are
+        where you find out whether it holds.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initSectionReader } from "../lib/section-reader";
+  initSectionReader(document);
+</script>
+
+<style>
+  .reader {
+    /* Phase tokens, derived from the brand primary rather than invented, so
+       the chart cannot drift out of the Slop palette. Colour never carries
+       the phase on its own — the legend and the findings list say it in
+       words. */
+    --construction: var(--at-primary);
+    --maintenance: color-mix(in oklab, var(--at-primary) 55%, var(--at-bg));
+    --decay: color-mix(in oklab, var(--at-primary) 22%, var(--at-bg));
+
+    margin-block-start: 3rem;
+    padding-block-start: 2rem;
+    border-block-start: 2px solid color-mix(in oklab, var(--at-primary) 38%, transparent);
+  }
+
+  .eyebrow {
+    margin: 0 0 0.35rem;
+    color: var(--at-text-secondary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .reader h2 {
+    margin: 0 0 0.6rem;
+  }
+
+  .lede {
+    margin: 0 0 0.6rem;
+    text-wrap: pretty;
+  }
+
+  .note {
+    margin: 0.6rem 0 0;
+    color: var(--at-text-secondary);
+    font-size: 0.875rem;
+    text-wrap: pretty;
+  }
+
+  .label {
+    display: block;
+    margin-block-end: 0.4rem;
+    font-weight: 600;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid var(--at-border);
+    border-radius: var(--at-border-radius);
+    background: var(--at-bg-elevated);
+    color: var(--at-text);
+    font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    font-size: 0.85rem;
+    resize: vertical;
+  }
+
+  textarea:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--at-primary);
+    outline-offset: 2px;
+  }
+
+  button {
+    /* 44px floor for the touch target, set a hair over so Chrome's own
+       rounding cannot land it under (it resolves max(2.75rem, 100%) to
+       43.9941px). */
+    min-height: 2.8rem;
+    margin-block-start: 0.75rem;
+    padding-inline: 1.1rem;
+    border: 1px solid var(--at-primary);
+    border-radius: var(--at-border-radius);
+    background: var(--at-primary);
+    color: var(--at-bg);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: var(--at-primary-hover, var(--at-primary));
+  }
+
+  .chart-frame {
+    margin-block-start: 1.5rem;
+  }
+
+  .chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 1px;
+    height: 8rem;
+    padding: 0.4rem;
+    border-block-end: 1px solid var(--at-divider);
+    background: var(--at-bg-alt);
+    overflow: hidden;
+  }
+
+  .bar {
+    flex: 1 1 0;
+    min-width: 2px;
+    /* A silent month is still a column: the gap is the finding. */
+    min-height: 1px;
+    height: var(--h, 0%);
+    background: var(--decay);
+    transition: height 180ms ease-out;
+  }
+
+  .bar[data-phase="construction"] { background: var(--construction); }
+  .bar[data-phase="maintenance"] { background: var(--maintenance); }
+
+  /* The boundary is the one thing on the chart that is not a quantity, so it
+     is marked with a rule rather than a colour. */
+  .bar[data-boundary] {
+    box-shadow: 1px 0 0 0 var(--at-text);
+  }
+
+  .axis {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.35rem 0 0;
+    color: var(--at-text-secondary);
+    font-size: 0.75rem;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.85rem;
+  }
+
+  .legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .swatch {
+    width: 0.85rem;
+    height: 0.85rem;
+    border: 1px solid var(--at-border);
+    border-radius: 2px;
+  }
+
+  .swatch[data-phase="construction"] { background: var(--construction); }
+  .swatch[data-phase="maintenance"] { background: var(--maintenance); }
+  .swatch[data-phase="decay"] { background: var(--decay); }
+
+  .findings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+    gap: 0.85rem 1.25rem;
+    margin: 1.25rem 0 0;
+  }
+
+  .findings dt {
+    color: var(--at-text-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .findings dd {
+    margin: 0.15rem 0 0;
+    font-size: 1.05rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  [data-field="verdict"] {
+    text-transform: capitalize;
+    font-weight: 600;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bar {
+      transition: none;
+    }
+  }
+</style>

@@ -132,6 +132,14 @@ template.
 - **Astro inlines small module scripts straight into the HTML.** A test that
   filters `dist/**` to `.js` files can see an empty bundle for a page that
   actually has handlers --- read the inline `<script>` elements too.
+- **The clock is an input; inject it at the call site.** `read()` in
+  `src/lib/stratigraphy.ts` defaults `today` to the last commit, which makes
+  months-silent 0 and the verdict "active" for every input — including a
+  project dead for five years, which is the one number the tool exists to
+  produce. Every test passed an explicit date, so the default path was never
+  exercised and the suite stayed green over a broken feature. It was only
+  visible by using the page. A default that is never tested is not a default,
+  it is a trap.
 - **JSDOM has no layout engine: every rect it reports is zero.** Anything
   dividing by a height silently becomes `NaN`. Give a geometry measurement its
   own pure function so it's testable as arithmetic, and stub
