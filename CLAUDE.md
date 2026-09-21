@@ -223,7 +223,28 @@ before any content existed, because they are what the content had to satisfy.
 ### Holding these mechanically
 
 Rule 1 is the one a person would otherwise have to police by reading all
-twelve sessions, so it has a sensor: `spec/course-integrity.test.ts` asserts
-every session description names a forensic method from a fixed vocabulary. The
-other seven are judgement, and they stay judgement — a rule I can't test is
-still worth writing down, but I should know which kind I'm holding.
+twelve sessions, so it is meant to have a sensor: `spec/course-integrity.test.ts`,
+asserting every session description names a forensic method from a fixed
+vocabulary. **That file does not exist yet.** Describing a test here and not
+writing it is the failure this course teaches students to detect — a claim with
+nothing behind it — so either write it or cut this sentence.
+
+Rule 7 has `spec/source-integrity.test.ts`. No runner can confirm a cited work
+exists, and it does not pretend to: a test named "case studies are real" would
+be one whose name makes a claim its body cannot check. What it holds is the
+shape fabrication actually took when it arrived here — a parallel draft of all
+twelve decks carrying six invented colleagues, signing off commits from eight
+example.com and kernel.org addresses. So: every address in teaching content
+must be in-world (`@slop.university`), no example is framed as hypothetical,
+every lecture carries a source with an author and a year, and each deck's
+reading slide matches its lecture's exactly — the anti-drift property 51301c6
+asserted and nothing enforced. `src/content/people` is out of scope, since the
+staff are invented on purpose under rule 5.
+
+Run against that draft, the sensor fails on all four counts. Watch for `\Z` in
+a JavaScript regex while reading it: JS has no such anchor and reads it as a
+literal Z, which silently truncated a section mid-citation and bought one green
+run this file had not earned.
+
+The remaining six are judgement, and they stay judgement — a rule I can't test
+is still worth writing down, but I should know which kind I'm holding.
