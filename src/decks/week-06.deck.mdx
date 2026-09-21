@@ -39,6 +39,20 @@ It is written once, at the moment of most enthusiasm, and revised least.
 
 ---
 
+## Generated versus authored
+
+| Type | What it tells you | What it misses |
+|------|-------------------|----------------|
+| `jsdoc` / `typedoc` output | API shape, parameter types | Intent, trade-offs, warnings |
+| An OpenAPI spec | Endpoint contracts | Why the endpoints exist |
+| A hand-written guide | "Use A, not B — B has a concurrency bug" | Completeness |
+| A tutorial | The happy path | Every edge case |
+
+The hand-written guide is the thing you hope to find. Abandoned projects
+almost never have one.
+
+---
+
 ## Reading the gap
 
 - README accurate, comments stale → **died recently**

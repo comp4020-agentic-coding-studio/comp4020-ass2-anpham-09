@@ -36,6 +36,21 @@ Stop as soon as it runs.
 
 ---
 
+## Three levels of intervention
+
+From least to most intrusive:
+
+| Level | Method | Original code |
+|-------|--------|---------------|
+| **Shim** | A compatibility layer around it | Untouched |
+| **Migration** | Update the calls to a living API | Changed mechanically |
+| **Rewrite** | Replace the implementation | Gone |
+
+The conservator's preference is always the least intrusive option that
+achieves stability.
+
+---
+
 ## The restoration log
 
 A complete, ordered list of every change and why you made it.

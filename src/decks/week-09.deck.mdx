@@ -46,6 +46,21 @@ Ask what a reader in 3020 would still be missing.
 
 ---
 
+## What the vault left out
+
+The snapshot took the HEAD of each default branch, and only that. No issues,
+no pull requests, no review history. Binaries over 100KB were dropped unless
+the repo had 250 stars or more.
+
+Inclusion was keyed to activity: commits in the months before 02/02/2020, or
+at least one star plus a commit in the year prior, or 250 stars outright.
+
+A project already dead in 2019, with a handful of stars, met none of those
+tests. The vault preserves what was alive — which is precisely not your dig
+site.
+
+---
+
 ## The executability problem
 
 Every one of these is a link in the chain:
@@ -57,6 +72,21 @@ Every one of these is a link in the chain:
 - The hardware itself
 
 Break one link and you have a text file, not a program.
+
+---
+
+## Why builds break
+
+| Failure | Example |
+|---------|---------|
+| Language version | Python 2's `print "hello"` is a syntax error in Python 3 |
+| Removed function | C's `gets()` will not compile on a modern toolchain |
+| Yanked dependency | The package is gone from the registry |
+| Changed API | The library moved on; the old signature did not survive |
+| Missing build tool | A native module needs an interpreter nobody ships now |
+| TLS changes | An old client cannot negotiate with a modern server |
+
+Preserved is not the same as runnable.
 
 ---
 

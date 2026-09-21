@@ -39,6 +39,30 @@ Neither is wrong. Both tell you what the team was afraid of.
 
 ---
 
+## The lockfile as snapshot
+
+`package-lock.json`, `yarn.lock`, `Gemfile.lock`, `poetry.lock`.
+
+A lockfile records the exact versions resolved at one moment — and says, in
+effect: this worked on my machine, on this day, and nowhere else.
+
+An abandoned project with a lockfile hands you a reproducibility target. The
+target may no longer exist.
+
+---
+
+## Transitive dependencies
+
+Your direct dependencies have dependencies. Those have dependencies.
+
+A manifest listing twelve packages can resolve to several hundred.
+
+You chose twelve. You inherited the rest, written by strangers. The question
+for a dig site is how many of those strangers were still maintaining their
+code on the day this project stopped.
+
+---
+
 ## Case study: left-pad
 
 In 2016 an eleven-line package was unpublished from npm.
